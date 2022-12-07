@@ -1,0 +1,20 @@
+services:
+  db:
+    image: postgres
+    restart: always
+    environment:
+      - POSTGRES_PASWWORD=1234
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
+  app:
+    build: 
+      context: .
+    ports:
+      - 5002:80
+    depends_on:
+      - db
+volumes:
+  postgres-data :
